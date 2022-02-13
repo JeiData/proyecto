@@ -65,9 +65,15 @@ Palabras_clave VARCHAR (100) NOT NULL,
 Codigo_identificacion INT NOT NULL,
 PRIMARY KEY (Proyecto_Id),
 FOREIGN KEY (Proyecto_Id)
-REFERENCES Financiamiento (Proyecto_Id)
-REFERENCES Integrantes (Proyecto_Id)
+REFERENCES Financiamiento (Proyecto_Id),
+FOREIGN KEY (Proyecto_Id)
+REFERENCES Integrantes (Proyecto_Id),
+FOREIGN KEY (Proyecto_Id)
+REFERENCES Disciplina_Id (Proyecto_Id),
+FOREIGN KEY (Proyecto_Id)
+REFERENCES Estado (Proyecto_Id)
 );
+
 
 
 
