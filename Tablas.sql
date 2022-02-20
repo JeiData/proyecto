@@ -51,11 +51,12 @@ REFERENCES Ref_Estado_Proyecto (Estado_Id)
 
 CREATE TABLE Integrantes (
 Proyecto_Id INT NOT NULL,
-Sexo_director VARCHAR (10) NOT NULL,
 Cantidad_Miembros_M INT NOT NULL,
 Cantidad_miembros_F INT NOT NULL,
+Sexo_director VARCHAR (10) NOT NULL,
 PRIMARY KEY (Proyecto_Id)
 );
+
 
 CREATE TABLE Proyectos_2019 (
 Proyecto_Id INT NOT NULL,
