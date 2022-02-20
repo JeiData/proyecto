@@ -4,14 +4,14 @@ CREATE TABLE Ref_gran_area_descripcion (
 Gran_area_codigo INT NOT NULL,
 Gran_area_descripcion VARCHAR (40) NOT NULL,
 PRIMARY KEY (Gran_area_codigo)
-;
+);
 
 CREATE TABLE Ref_disciplina (
 Disciplina_Id INT NOT NULL,
 Gran_area_codigo INT NOT NULL,
 Area_descripcion VARCHAR (40) NOT NULL,
 Disciplina_descripcion VARCHAR (40) NOT NULL,
-PRIMARY KEY (Disciplina_Id)
+PRIMARY KEY (Disciplina_Id),
 FOREIGN KEY (Gran_area_codigo)
 REFERENCES Ref_gran_area_descripcion (Gran_area_codigo)
 );
@@ -82,4 +82,5 @@ REFERENCES Proyecto_disciplina (Proyecto_Id),
 FOREIGN KEY (Proyecto_Id)
 REFERENCES Estado (Proyecto_Id)
 );
+
 
