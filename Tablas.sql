@@ -68,9 +68,9 @@ PRIMARY KEY (Proyecto_Id)
 CREATE TABLE Proyectos_2019 (
 Proyecto_Id INT NOT NULL,
 Proyecto_fuente VARCHAR (15) NOT NULL,
-Titulo VARCHAR (100) NOT NULL,
-Resumen VARCHAR (150) NOT NULL,
-Codigo_identificacion INT (15) NOT NULL,
+Titulo VARCHAR (300) NOT NULL,
+Resumen VARCHAR (3000) NOT NULL,
+Codigo_identificacion INT (20) NOT NULL,
 Palabras_clave VARCHAR (100) NOT NULL,
 PRIMARY KEY (Proyecto_Id),
 FOREIGN KEY (Proyecto_Id)
