@@ -6,8 +6,14 @@ AS SELECT Proyecto_Id, Cantidad_Miembros_F
 FROM integrantes
 ORDER BY Cantidad_Miembros_F DESC ;
 
-CREATE VIEW Vista_Financiamiento
-AS SELECT  Monto_Adjudicado, Proyecto_Id 
-FROM financiamiento
-INNER JOIN ref_disciplina ON Proyecto_Id=Proyecto_Id
-ORDER BY Monto_Adjudicado DESC;
+CREATE VIEW vista_financiamiento
+AS SELECT
+	   financiamiento.proyecto_id,
+     financiamiento.Moneda_id,
+     financiamiento.Monto_Adjudicado,
+     ref_moneda.Moneda_id
+FROM
+    financiamiento
+    ref_moneda
+WHERE
+    financiamiento.moneda_id = ref_moneda.moneda_id;
