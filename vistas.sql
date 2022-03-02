@@ -11,7 +11,7 @@ FROM
 WHERE
     	Proyecto_disciplina.disciplina_id=ref_disciplina.Disciplina_Id;
 
------------- CORRECCION EN BASE A LO SUGERIDO:
+------------ CORRECCION EN BASE A LO SUGERIDO: 
 CREATE VIEW Vista_Proyecto_disciplina
 AS SELECT
 	Proyecto_disciplina.proyecto_id,
