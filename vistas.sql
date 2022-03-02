@@ -39,8 +39,16 @@ SELECT
 FROM
 	ref_disciplina;
 
------------------------
+----- ARME TAMBIÉN CON INNER JOIN:
 
+CREATE VIEW Vista_Proyecto_OPCION2
+AS SELECT Proyecto_disciplina.proyecto_id, Proyecto_disciplina.disciplina_id
+FROM Proyecto_disciplina
+INNER JOIN ref_disciplina
+ON Proyecto_disciplina.disciplina_id = ref_disciplina.disciplina_id;
+
+
+-----------------------
 
 CREATE VIEW Vista_integrantes
 AS SELECT * FROM integrantes;
