@@ -32,7 +32,7 @@ DELIMITER %%
 
 DELIMITER %%
 
-CREATE PROCEDURE sp_crea_gran_area (Gran_area_codigo INT, Gran_area_descripcion VARCHAR (40))
+CREATE PROCEDURE sp_crea_gran_area (IN Gran_area_codigo INT, IN Gran_area_descripcion VARCHAR (40))
 BEGIN
 	DECLARE Nueva_gran_area
 	CALL sp_ultima_gran_area (@Nueva_gran_area)
