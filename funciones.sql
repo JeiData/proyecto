@@ -1,8 +1,3 @@
-SELECT
-AVG (Monto_Adjudicado)
-FROM financiamiento;
-
--------------------------
 
 CREATE FUNCTION `porcentaje_miembros_mujeres`(param1 INT , param2 INT) RETURNS int(11)
 NO SQL
