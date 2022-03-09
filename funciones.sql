@@ -24,11 +24,12 @@ FROM integrantes ;
 
 -- SEGUNDA FUNCION
 
-CREATE FUNCTION `FINANCIAMIENTO`(MONEDA_id INT) RETURNS varchar(30) READS SQL 
-DATA 
-BEGIN 
-	DECLARE resultado VARCHAR (30);
-	SET resultado = (SELECT Monto_Solicitado FROM proyectos_ciencia.financiamiento WHERE proyectos_ciencia.financiamiento.moneda_id = moneda_id);
-	RETURN resultado;
+CREATE FUNCTION `financiamiento`(Moneda_id int) 
+RETURNS varchar(15)
+READS SQL DATA
+BEGIN
+	DECLARE resultado varchar (15);
+	SET resultado= (select Moneda from proyectos_ciencia.ref_moneda where proyectos_ciencia.ref_moneda.moneda_id=moneda_id);
+RETURN resultado;
 END
 
