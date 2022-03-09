@@ -33,3 +33,7 @@ BEGIN
 RETURN resultado;
 END
 
+-- Esta funciòn sería útil al momento de explorar la tabla de financiamiento, para poder ver 
+-- las monedas correspondientes a los montos adjudicados para cada proyecto, como en la siguiente query:
+
+select Proyecto_Id, financiamiento (Moneda_Id),Monto_Adjudicado from financiamiento;
