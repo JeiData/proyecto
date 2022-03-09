@@ -19,7 +19,7 @@ PRIMARY KEY (Id_movimiento)
 
 -- 2 Creacion del Trigger
 CREATE TRIGGER `insp_movimientos_proyectos2019`
-AFTER INSERT ON Aud_Proyectos_2019 -- EVENTO QUE DESENCADENARIA EL TRIGGER
+AFTER INSERT ON Proyectos_2019 -- EVENTO QUE DESENCADENARIA EL TRIGGER
 FOR EACH ROW
 INSERT INTO Aud_Proyectos_2019 
 (Id_movimiento,Fecha,Usuario_Id,Proyecto_Id,Proyecto_fuente,Titulo,Resumen,Codigo_identificacion,Palabras_clave,Tipo_operacion) -- COMANDO A EJECUTAR
