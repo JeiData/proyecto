@@ -37,3 +37,10 @@ END
 -- las monedas correspondientes a los montos adjudicados para cada proyecto, como en la siguiente query:
 
 select Proyecto_Id, financiamiento (Moneda_Id),Monto_Adjudicado from financiamiento;
+
+-- o también para visualizar en una query el título del proyecto, moneda y monto adjudicado, como a continuación detallo:
+
+SELECT 
+proyectos_2019.titulo as tit, financiamiento (Moneda_Id), financiamiento.monto_adjudicado AS monto
+FROM proyectos_2019 RIGHT JOIN financiamiento 
+ON proyectos_2019.Proyecto_Id=financiamiento.Proyecto_Id;
