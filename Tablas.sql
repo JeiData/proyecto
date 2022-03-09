@@ -39,6 +39,8 @@ Proyecto_Id INT NOT NULL,
 Moneda_Id INT NOT NULL,
 Monto_Solicitado INT NOT NULL,
 Monto_Adjudicado INT NOT NULL,
+Monto_Financiado_solicitado INT NOT NULL,
+Monto_Financiado_adjudicado INT NOT NULL,
 PRIMARY KEY (Proyecto_Id),
 FOREIGN KEY (Moneda_Id)
 REFERENCES Ref_moneda (Moneda_Id)
