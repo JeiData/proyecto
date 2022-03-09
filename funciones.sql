@@ -16,7 +16,7 @@ END
 
 USE proyectos_ciencia;
 
-SELECT Proyecto_Id, porcentaje_miembros_mujeres (Cantidad_Miembros_F,Cantidad_miembros_M) 
+SELECT Proyecto_Id AS PROYECTO, porcentaje_miembros_mujeres (Cantidad_Miembros_F,Cantidad_miembros_M) AS PORCENTAJE_MUJERES
 FROM integrantes ;
 
 
