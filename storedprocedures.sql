@@ -16,30 +16,47 @@ DELIMITER %%
 CALL sp_int_fem;
 
 
--- El otro S.P.  puede (1: insertar registros en una tabla de tu proyecto. 2: eliminar algún registro específico de una tabla 
--- de tu proyecto.)
+-- 2: S.P. que puede "insertar" registros en una tabla de tu proyecto o "eliminar" algún registro específico de una tabla de tu proyecto.
+-- Para insertar registros, pueden ser dos opciones de SP:
 
--- Primero cree un SP para obtener el ultimo id de los registros 'gran_area':
+-- 2.1:
+-- Primero, creo un sp que devuelva el ultimo id de proyecto como parámetro de salida
 
-DELIMITER %%
-CREATE PROCEDURE `sp_ultima_gran_area` ()
-BEGIN
-	SELECT MAX(Gran_area_codigo) FROM proyectos_ciencia.ref_gran_area_descripcion;
-END
-DELIMITER %%
-
--- Luego cree el SP para la insercion de registros nuevos:
-
-DELIMITER %%
-
-CREATE PROCEDURE sp_crea_gran_area (IN Gran_area_codigo INT, IN Gran_area_descripcion VARCHAR (40))
-BEGIN
-	DECLARE Nueva_gran_area
-	CALL sp_ultima_gran_area (@Nueva_gran_area)
-	SET @Nueva_gran_area= @Nueva_gran_area+1;
-
-	INSERT INTO ref_gran_area_descripcion VALUES ( Nueva_gran_area, Gran_area_codigo, Gran_area_descripcion,1, CURRENT_DATE (), current_date ());
-
+DELIMITER //
+CREATE PROCEDURE sp_ultimo_proyecto_2019 (OUT proyecto INT)
+BEGIN 
+	SELECT MAX(Proyecto_Id) into proyecto
+    FROM proyectos_2019;
 END
 
-DELIMITER %%
+DELIMITER //
+
+
+-- Ahora si, preparo el SP para poder insertar nuevos registros. El punto positivo es que se generará un ID adecuado, teniendo en cuenta 
+-- el último registrado en la tabla, ya que lo ligaré con el SP anterior. Muy útil teniendo en cuenta que Proyecto_ID no es AUTOINCREMENT.
+
+DELIMITER //
+CREATE PROCEDURE `sp_insertar_nuevo_proyecto` (IN Proyecto_Id INT, IN Proyecto_fuente VARCHAR (15), IN Titulo VARCHAR (250), IN Resumen VARCHAR (2800), IN Codigo_identificacion VARCHAR (20), IN Palabras_clave VARCHAR (150))
+BEGIN
+		DECLARE NUEVO_PROYECTO INT;
+        CALL sp_ultimo_proyecto(@ULTIMO_PROYECTO);
+        SET NUEVO_PROYECTO= @ULTIMO_PROYECTO+1;
+	
+INSERT INTO proyectos_2019 VALUES (NUEVO_PROYECTO, Proyecto_fuente, Titulo, Resumen, Codigo_identificacion, Palabras_clave)
+    
+END
+
+DELIMITER //
+
+CALL sp_insertar_nuevo_proyecto(1,CONICET, Titulo, Resumen, Codigo_identificacion, Palabras_clave)
+
+-- 2.2: 
+-- Esta sería una opción un poco mas sencilla que la anterior pero que permitiría facilitar el ingreso de nuevos registros en la tabla "Ref_disciplina".
+
+DELIMITER //
+CREATE PROCEDURE `insercion_datos`( in disciplina_id INT, in gran_area_codigo INT, in area_descripcion VARCHAR (100), in disciplina_descripcion VARCHAR (200))
+BEGIN
+	INSERT INTO ref_disciplina (Disciplina_Id, Gran_area_codigo, Area_descripcion, Disciplina_descripcion)
+	VALUES (@disciplina_id, @area_codigo, @area_descripcion, @disciplina_descripcion);
+END
+DELIMITER //
