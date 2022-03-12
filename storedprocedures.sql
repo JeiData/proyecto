@@ -3,6 +3,19 @@
 -- mediante un segundo parámetro, si el orden es descendente o ascendente:
 
 
+DELIMITER //
+CREATE PROCEDURE sp_ordenar_tabla (OUT PARAM1 VARCHAR (350))
+BEGIN
+	SELECT * FROM proyectos_2019
+    ORDER BY PARAM 1 DESC;
+END
+
+DELIMITER //
+
+
+
+
+
 DELIMITER %%
 CREATE PROCEDURE `sp_int_fem`()
 BEGIN
