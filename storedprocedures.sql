@@ -1,7 +1,7 @@
 
 -- 1: (consigna) S.P. debe permitir indicar a través de un parámetro el campo de ordenamiento de una tabla y mediante un segundo parámetro, si el orden es descendente o ascendente.
 
--- Pensé un Stored Procedure para optimizar las consultas en la tabla "Financiamiento". Trabajando con la columna Monto_adjudicado se obtendría realizar un ordenamiento ASC o DESC de
+-- Pensé un Stored Procedure para optimizar las consultas en la tabla "Financiamiento". Trabajando con la columna Monto_adjudicado se obtendría un ordenamiento ASC o DESC de
 -- de los diferentes montos.
 
 CREATE PROCEDURE `sp_ordenar_financiamiento`(IN ASC_DESC VARCHAR (10))
