@@ -1,20 +1,27 @@
 
 -- 1: (consigna) S.P. debe permitir indicar a través de un parámetro el campo de ordenamiento de una tabla y mediante un segundo parámetro, si el orden es descendente o ascendente.
--- Pensé un Stored Procedure para optimizar las consultas en la tabla "Financiamiento". Permitiría seleccionar una determinada columna y realizar un ordenamiento ASC o DESC de
+
+-- Pensé un Stored Procedure para optimizar las consultas en la tabla "Financiamiento". Trabajando con la columna Monto_adjudicado se obtendría realizar un ordenamiento ASC o DESC de
 -- de los diferentes montos.
 
-CREATE PROCEDURE `sp_ordenar_financiamiento`(IN MONTO VARCHAR (20), IN ASC_DESC VARCHAR (10))
+CREATE PROCEDURE `sp_ordenar_financiamiento`(IN ASC_DESC VARCHAR (10))
 BEGIN
 	IF ASC_DESC='ASC' THEN
-		SELECT * FROM proyectos_ciencia.financiamiento
-		ORDER BY MONTO ASC;
-    ELSEIF ASC_DESC='DESC' THEN
-		SELECT * FROM proyectos_ciencia.financiamiento
-		ORDER BY MONTO DESC;
+		SELECT Proyecto_id, Monto_Adjudicado FROM proyectos_ciencia.financiamiento
+		ORDER BY Monto_Adjudicado ASC;
+   	ELSEIF ASC_DESC='DESC' THEN
+		SELECT Proyecto_Id, Monto_adjudicado FROM proyectos_ciencia.financiamiento
+		ORDER BY Monto_Adjudicado DESC;
 END IF;
 END
 
+-- para invocarla:
+
+CALL proyectos_ciencia.sp_ordenar_financiamiento('ASC');
+
+
 -- 2: (consigna) S.P. que puede "insertar" registros en una tabla de tu proyecto o "eliminar" algún registro específico de una tabla de tu proyecto.
+
 -- Para insertar registros, pueden ser dos opciones de SP:
 
 -- 2.1:
@@ -58,3 +65,5 @@ BEGIN
 	VALUES (@disciplina_id, @area_codigo, @area_descripcion, @disciplina_descripcion);
 END
 DELIMITER //
+
+
