@@ -4,6 +4,8 @@
 -- Pensé un Stored Procedure para optimizar las consultas en la tabla "Financiamiento". Trabajando con la columna Monto_adjudicado se obtendría un ordenamiento ASC o DESC de
 -- de los diferentes montos.
 
+DELIMITER //
+
 CREATE PROCEDURE `sp_ordenar_financiamiento`(IN ASC_DESC VARCHAR (10))
 BEGIN
 	IF ASC_DESC='ASC' THEN
@@ -14,6 +16,7 @@ BEGIN
 		ORDER BY Monto_Adjudicado DESC;
 END IF;
 END
+DELIMITER //
 
 -- para invocarla:
 
