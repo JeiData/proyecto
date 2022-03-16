@@ -24,7 +24,7 @@ GRANT SELECT ON *.* TO 'USER1'@'LOCALHOST';
 -- También debe tener una contraseña.
 
 
-CREATE USER 'USER2'@'LOCALHOST'IDENTIFIED BY '2useR';
+CREATE USER 'USER2'@'%'IDENTIFIED BY '2useR';
 
 -- Verifico la creación del usuario:
 
@@ -33,4 +33,4 @@ select * from mysql.user;
 -- se percibe que no tiene permisos de ningún tipo. Por lo que a continuación se le asigna permisos se lectura, inserción, modificación
 -- sobre los objetos. Tiene restringida la eliminacion de registros:
 
-GRANT SELECT, INSERT, ALTER ON *.* TO 'USER2'@'LOCALHOST';
+GRANT SELECT, INSERT, ALTER ON *.* TO 'USER2'@'%';
