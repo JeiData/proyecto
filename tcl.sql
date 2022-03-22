@@ -56,11 +56,11 @@ ROLLBACK;
 
 COMMIT;
 
--- CONSIGNA N°2: En la segunda tabla, inserta ocho nuevos registros iniciando también una transacción. 
--- Agrega un savepoint a posteriori de la inserción del registro #4 y otro savepoint a posteriori del registro #8
--- Agrega en una línea comentada la sentencia de eliminación del savepoint de los primeros 4 registros insertados
 
--- tabla REFERENCIA DISCIPLINA
+-- CONSIGNA N°2: 
+
+-- Tabla REFERENCIA DISCIPLINA
+
 START TRANSACTION;
 INSERT INTO ref_disciplina VALUES (289, 6, 'arte', 'arte prehistorico');
 INSERT INTO ref_disciplina VALUES (290, 2, 'psicologia', 'redes sociales');
@@ -71,16 +71,17 @@ INSERT INTO ref_disciplina VALUES (293, 4, 'arte', 'arte contemporaneo');
 INSERT INTO ref_disciplina VALUES (294, 3, 'musica', 'historia de la musica siglo XV');
 INSERT INTO ref_disciplina VALUES (295, 1, 'agronomia', 'comunidades y ambiente');
 INSERT INTO ref_disciplina VALUES (296, 4, 'agronomia', 'pesticidas');
-INSERT INTO ref_disciplina VALUES (297, 5, 'derecho', 'internacional ambiental');
 SAVEPOINT NUEVA_DISCIPLINA_5_8;
 
 -- Se verifican los cambios:
 
 SELECT * FROM ref_disciplina; 
 
--- Por un lado se verifica la incorporación masiva de registros. 
--- Por el otro, en ACTION OUTPUT, los marcadores:  "NUEVA_DISCIPLINA_1_4" y "NUEVA_DISCIPLINA_5_8"
+-- Por un lado se incorporaron masivamente registros. 
+-- Por el otro, en ACTION OUTPUT están los marcadores:  "NUEVA_DISCIPLINA_1_4" y "NUEVA_DISCIPLINA_5_8"
 
--- Para eliminar los primeros cuatro registros insertados, usaré:
+-- Para eliminar los últimos cuatro registros insertados, usaré:
 
 ROLLBACK TO NUEVA_DISCIPLINA_1_4; 
+
+-- de esta manera se borrarán los archivos correspondientes a la Disciplina_Id numeros 293, 294, 295 y 296 sin afectar los archivos anteriores.
