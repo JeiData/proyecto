@@ -73,30 +73,28 @@ COMMIT;
 
 
 -- CONSIGNA N°2: 
-
--- Tabla REFERENCIA DISCIPLINA
+-- Tabla usada: proyectos_2019
 
 START TRANSACTION;
-INSERT INTO ref_disciplina VALUES (289, 6, 'arte', 'arte prehistorico');
-INSERT INTO ref_disciplina VALUES (290, 2, 'psicologia', 'redes sociales');
-INSERT INTO ref_disciplina VALUES (291, 3, 'tecnologia', 'robotica');
-INSERT INTO ref_disciplina VALUES (292, 1, 'ciencias sociales', 'redes sociales');
-SAVEPOINT NUEVA_DISCIPLINA_1_4;
-INSERT INTO ref_disciplina VALUES (293, 4, 'arte', 'arte contemporaneo');
-INSERT INTO ref_disciplina VALUES (294, 3, 'musica', 'historia de la musica siglo XV');
-INSERT INTO ref_disciplina VALUES (295, 1, 'agronomia', 'comunidades y ambiente');
-INSERT INTO ref_disciplina VALUES (296, 4, 'agronomia', 'pesticidas');
-SAVEPOINT NUEVA_DISCIPLINA_5_8;
+INSERT INTO proyectos_2019 VALUES (24654, 'CONICET', 'Ciencia de Datos: un enfoque social', 'Los datos estan presentes en nuestra vida cotidiana','22920180100066CO', 'Datos. Ciencia. Sociedad');
+INSERT INTO proyectos_2019 VALUES (24655, 'ANPCYT', 'Inteligencia artificial para el analisis automatizado de imagenes medicas', 'no publicado','23920180100066CO', 'Salud. Inteligencia artificial');
+INSERT INTO proyectos_2019 VALUES (24656, 'ANPCYT', 'Migraciones y Transformaciones Sociales en Aglomeraciones Medianas y Pequeñas de la Argentina en Perspectiva Comparada', ' Heterogeneizacion y Fragmentacion Social y Urbana. ','22920180120066CO', 'Migracion. Cultura');
+INSERT INTO proyectos_2019 VALUES (24657, 'CONICET', 'Desarrollo de tecnologias sustentables aplicando los principios de la quimica verde.', 'No especificado','22920180100067CO', 'Quimica. Sustentabilidad. Ambiente');
+SAVEPOINT nuevo_proyecto_24654_24657;
+INSERT INTO proyectos_2019 VALUES (24658, 'CONICET', 'Nanocompuestos de Polipropilenos Ramificados para uso en Tecnologias de Espumado', 'Los datos estan presentes en nuestra vida cotidiana','22920180100066CO', 'Datos. Ciencia. Sociedad');
+INSERT INTO proyectos_2019 VALUES (24659, 'CONICET', 'El aprendizaje espaciado y los mecanismos que optimizan la formacion y la persistencia de memorias.', 'Recuerdos y entrenamiento neuronal.','22920180100166CO', 'Neurociencia. Psicologia. Memoria');
+INSERT INTO proyectos_2019 VALUES (24660, 'CONICET', 'Utilización de recursos mineros argentinos para el desarrollo de materiales compuestos', 'Desarrollo De Materiales A Base De Polimeros Biodegradables De Origen Renovable','22920180100066CO', 'Ambiente. Polimeros. Quimica');
+INSERT INTO proyectos_2019 VALUES (24661, 'CONICET', 'Astrofisica de sistemas estelares galacticos y extragalacticos', 'Estructura Y Evolucion Quimica De La Vi­a Lactea Y Del Sistema Magallanico, A Partir De Datos Observacionales','22920180100066CO', 'Astronomia. Cumulos. Galaxias');
+SAVEPOINT nuevo_proyecto_24658_24661;
 
 -- Se verifican los cambios:
 
-SELECT * FROM ref_disciplina; 
+SELECT * FROM proyectos_2019; 
 
--- Por un lado se incorporaron masivamente registros. 
--- Por el otro, en ACTION OUTPUT están los marcadores:  "NUEVA_DISCIPLINA_1_4" y "NUEVA_DISCIPLINA_5_8"
+-- Por un lado se incorporaron masivamente registros EN FORMA TEMPORAL. 
+-- Por el otro, en ACTION OUTPUT están los marcadores "nuevo_proyecto_24654_24657" y "nuevo_proyecto_24658_24661":  
 
--- Para eliminar los últimos cuatro registros insertados, usaré:
+-- Para eliminar el savepoint de los primeros cuatro registros insertados, usaré:
 
-ROLLBACK TO NUEVA_DISCIPLINA_1_4; 
+RELEASE SAVEPOINT nuevo_proyecto_24654_24657; 
 
--- de esta manera se borrarán los archivos correspondientes a la Disciplina_Id numeros 293, 294, 295 y 296 sin afectar los archivos anteriores.
