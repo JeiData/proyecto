@@ -1,10 +1,7 @@
 -- CONSIGNA N° 1: 
--- En la primera tabla, si tiene registros, deberás eliminar algunos de ellos iniciando previamente una transacción. 
--- Si no tiene registros la tabla, reemplaza eliminación por inserción.
--- Deja en una línea siguiente, comentado la sentencia Rollback, y en una línea posterior, la sentencia Commit.
--- Si eliminas registros importantes, deja comenzado las sentencias para re-insertarlos.
 
--- 1.1. TABLA ref_gran_area_descripcion
+-- 1.1. TABLA USADA: ref_gran_area_descripcion
+
 -- Por defecto, la variable autocommit hace que cada operación impacte automáticamente sobre la tabla.
 
 USE proyectos_ciencia;
@@ -18,7 +15,6 @@ SET AUTOCOMMIT=0;
 -- Luego:
 
 START TRANSACTION;
-
 INSERT INTO ref_gran_area_descripcion
 VALUES
     (8, 'etimologia y lenguas'),
@@ -35,7 +31,7 @@ VALUES
 SELECT *FROM ref_gran_area_descripcion;
 
 -- Pero están disponibles temporalmente: si se cierra la sesión o ingresa desde otro user, los cambios no son visibles.
--- Así para desechar los cambios, se usa ROLLBACK. Importante: Rollback, solo funciona sin haber ejecutado antes el comando COMMIT :
+-- para desechar los cambios, se usa ROLLBACK. Importante: Rollback, solo funciona sin haber ejecutado antes el comando COMMIT :
 
 ROLLBACK;
 
@@ -84,7 +80,7 @@ SAVEPOINT nuevo_proyecto_24654_24657;
 INSERT INTO proyectos_2019 VALUES (24658, 'CONICET', 'Nanocompuestos de Polipropilenos Ramificados para uso en Tecnologias de Espumado', 'Los datos estan presentes en nuestra vida cotidiana','22920180100066CO', 'Datos. Ciencia. Sociedad');
 INSERT INTO proyectos_2019 VALUES (24659, 'CONICET', 'El aprendizaje espaciado y los mecanismos que optimizan la formacion y la persistencia de memorias.', 'Recuerdos y entrenamiento neuronal.','22920180100166CO', 'Neurociencia. Psicologia. Memoria');
 INSERT INTO proyectos_2019 VALUES (24660, 'CONICET', 'Utilización de recursos mineros argentinos para el desarrollo de materiales compuestos', 'Desarrollo De Materiales A Base De Polimeros Biodegradables De Origen Renovable','22920180100066CO', 'Ambiente. Polimeros. Quimica');
-INSERT INTO proyectos_2019 VALUES (24661, 'CONICET', 'Astrofisica de sistemas estelares galacticos y extragalacticos', 'Estructura Y Evolucion Quimica De La Vi­a Lactea Y Del Sistema Magallanico, A Partir De Datos Observacionales','22920180100066CO', 'Astronomia. Cumulos. Galaxias');
+INSERT INTO proyectos_2019 VALUES (24661, 'CONICET', 'Astrofisica de sistemas estelares galacticos y extragalacticos', 'Estructura Y Evolucion Quimica De La Via Lactea Y Del Sistema Magallanico, A Partir De Datos Observacionales','22920180100066CO', 'Astronomia. Cumulos. Galaxias');
 SAVEPOINT nuevo_proyecto_24658_24661;
 
 -- Se verifican los cambios:
