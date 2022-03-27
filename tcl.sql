@@ -39,7 +39,7 @@ ROLLBACK;
 
 COMMIT;
 
--- 1.2. TABLA ref_disciplina
+-- 1.2. TABLA USADA ref_disciplina
 
 SELECT @@AUTOCOMMIT;
 
@@ -69,7 +69,7 @@ COMMIT;
 
 
 -- CONSIGNA N°2: 
--- Tabla usada: proyectos_2019
+-- TABLA USADA: proyectos_2019
 
 START TRANSACTION;
 INSERT INTO proyectos_2019 VALUES (24654, 'CONICET', 'Ciencia de Datos: un enfoque social', 'Los datos estan presentes en nuestra vida cotidiana','22920180100066CO', 'Datos. Ciencia. Sociedad');
