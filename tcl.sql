@@ -4,7 +4,7 @@
 -- Deja en una línea siguiente, comentado la sentencia Rollback, y en una línea posterior, la sentencia Commit.
 -- Si eliminas registros importantes, deja comenzado las sentencias para re-insertarlos.
 
--- 1.1. TABLA REFERENCIA GRAN AREA DESCRIPCION
+-- 1.1. TABLA ref_gran_area_descripcion
 -- Por defecto, la variable autocommit hace que cada operación impacte automáticamente sobre la tabla.
 
 USE proyectos_ciencia;
@@ -43,8 +43,7 @@ ROLLBACK;
 
 COMMIT;
 
--- 1.2. TABLA REFERENCIA DISCIPLINA
--- En este caso eliminaré registros de la tabla.
+-- 1.2. TABLA ref_disciplina
 
 SELECT @@AUTOCOMMIT;
 
@@ -55,12 +54,12 @@ INSERT INTO ref_disciplina
 VALUES
 	(289, 5, 'derecho','internacional publico'),
 	(290, 5, 'derecho','datos personales'),
-    (291, 5, 'sociologia','internacional publico'),
-    (292, 3, 'fisica cuantica','espacio y tiempo'),
-    (293, 2, 'astronomia','macroestructuras'),
-    (294, 4, 'ciencias naturales y exactas','seleccion natural'),
-    (295, 6, 'historia','arqueologia'),
-    (296, 5, 'filosofia','posmodernidad');
+	(291, 5, 'sociologia','internacional publico'),
+	(292, 3, 'fisica cuantica','espacio y tiempo'),
+	(293, 2, 'astronomia','macroestructuras'),
+	(294, 4, 'ciencias naturales y exactas','seleccion natural'),
+	(295, 6, 'historia','arqueologia'),
+	(296, 5, 'filosofia','posmodernidad');
     
 SELECT * FROM ref_disciplina;
 
