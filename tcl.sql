@@ -1,14 +1,17 @@
-
 -- CONSIGNA N° 1: 
+-- En la primera tabla, si tiene registros, deberás eliminar algunos de ellos iniciando previamente una transacción. 
+-- Si no tiene registros la tabla, reemplaza eliminación por inserción.
+-- Deja en una línea siguiente, comentado la sentencia Rollback, y en una línea posterior, la sentencia Commit.
+-- Si eliminas registros importantes, deja comenzado las sentencias para re-insertarlos.
 
 -- 1.1. TABLA REFERENCIA GRAN AREA DESCRIPCION
--- La variable llamada autocommit que ajusta su valor a 1, haciendo que cada operación impacte automáticamente sobre la tabla.
+-- Por defecto, la variable autocommit hace que cada operación impacte automáticamente sobre la tabla.
 
 USE proyectos_ciencia;
 
 SELECT @@AUTOCOMMIT;
 
--- Entonces, hay que desactivar esta variable.  
+-- Para que esto no sea así, hay que desactivar esta variable.  
 
 SET AUTOCOMMIT=0;
 
@@ -18,41 +21,54 @@ START TRANSACTION;
 
 INSERT INTO ref_gran_area_descripcion
 VALUES
-    (8, 'etimologia y lenguas');
+    (8, 'etimologia y lenguas'),
+    (9, 'biotecnologia'),
+    (10,'artes digitales'),
+    (11, 'historia de la musica'),
+    (12, 'etologia'),
+    (13, 'biologia celular'),
+    (14, 'psicología'),
+    (15, 'ciencia de datos');
 
--- Se verfica la inserción de los registros:
+-- Verfico la inserción de registros:
 
 SELECT *FROM ref_gran_area_descripcion;
 
--- Por estar disponibles temporalmente, si se cierra la sesión o ingresa desde otro user, los cambios no son visibles.
--- Así para desechar los cambios, se usa ROLLBACK. Es importante no haber ejecutado el comando COMMIT antes de usar ROLLBACK:
+-- Pero están disponibles temporalmente: si se cierra la sesión o ingresa desde otro user, los cambios no son visibles.
+-- Así para desechar los cambios, se usa ROLLBACK. Importante: Rollback, solo funciona sin haber ejecutado antes el comando COMMIT :
 
 ROLLBACK;
 
--- Por el contrario y en caso de querer confirmar el cambio de manera definitiva aplicamos:
+-- Por el contrario y en caso de querer confirmar el cambio de manera definitiva se usa:
 
 COMMIT;
 
-
 -- 1.2. TABLA REFERENCIA DISCIPLINA
--- En este caso eliminaré un registro de la tabla.
+-- En este caso eliminaré registros de la tabla.
+
+SELECT @@AUTOCOMMIT;
+
+SET AUTOCOMMIT=0;
 
 START TRANSACTION;
-DELETE FROM
- ref_disciplina
-WHERE 
-    Disciplina_Id= 288;
+INSERT INTO ref_disciplina
+VALUES
+	(289, 5, 'derecho','internacional publico'),
+	(290, 5, 'derecho','datos personales'),
+    (291, 5, 'sociologia','internacional publico'),
+    (292, 3, 'fisica cuantica','espacio y tiempo'),
+    (293, 2, 'astronomia','macroestructuras'),
+    (294, 4, 'ciencias naturales y exactas','seleccion natural'),
+    (295, 6, 'historia','arqueologia'),
+    (296, 5, 'filosofia','posmodernidad');
+    
+SELECT * FROM ref_disciplina;
 
--- Se verifica la eliminación del registro:
-
-SELECT * FROM ref_disciplina WHERE Disciplina_Id= 288;
-
--- Para desechar estos cambios que son temporales, aplico:
+-- Para desechar los cambios, uso ROLLBACK. 
 
 ROLLBACK;
 
--- Aplicando el SELECT anterior verificamos que el registro está nuevamente disponible.
--- A la inversa, y en caso de querer confirmar el cambio de manera definitiva usamos:
+-- A la inversa, y en caso de querer confirmar los cambios de manera definitiva:
 
 COMMIT;
 
